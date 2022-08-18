@@ -16,7 +16,7 @@ public class UserController {
     }
 
     @GetMapping("/admin")
-    public String showAllUsers(Model model) {
+    public String showViewAdmin(Model model) {
         model.addAttribute("newUser", new User());
         model.addAttribute("user", userService.getAuthenticatedUser());
         model.addAttribute("allUsers", userService.getAllUsers());
@@ -25,13 +25,13 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    public String showUser(Model model) {
+    public String showViewUser(Model model) {
         model.addAttribute("user", userService.getAuthenticatedUser());
         return "User";
     }
 
     @PostMapping("/admin/createUser")
-    public String createUser(User user) {
+    public String addNewUser(User user) {
         userService.saveUser(user);
         return "redirect:/admin";
     }
@@ -43,10 +43,8 @@ public class UserController {
     }
 
     @DeleteMapping("/admin/delete/{id}")
-    public String delete(@PathVariable("id") long id) {
+    public String deleteUserById(@PathVariable("id") long id) {
         userService.deleteUser(id);
         return "redirect:/admin";
     }
-
-
 }
