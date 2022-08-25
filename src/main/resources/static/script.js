@@ -1,4 +1,30 @@
-console.log(5)
+const allUser = document.getElementById('allUserTable')
+const requestURL = 'http://localhost:8080/api/users'
+let output = ''
+// GET
+fetch(requestURL)
+    .then(res => res.json())
+    .then(data => {
+        data.forEach(post => {
+            post.roles.forEach(role => console.log(role.name))
+            output += `
+                <tr>
+                    <td>${post.id}</td>
+                    <td>${post.firstName}</td>
+                    <td>${post.lastName}</td>
+                    <td>${post.age}</td>
+                    <td>${post.email}</td>
+                    <td ${post.roles}>
+                    </td>
+                         
+                    
+                </tr>
+                `
+        })
+        allUser.innerHTML = output
+    })
+
+
 // const requestURL = 'http://localhost:8080/api/users'
 //
 // // GET

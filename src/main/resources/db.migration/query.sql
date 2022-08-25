@@ -27,4 +27,4 @@ insert into roles (name) values ('ROLE_USER'), ('ROLE_ADMIN');
 # password = 100
 insert into users (first_name, last_name, age, email, password) values ('Oleg', 'Konovalov', 25, 'user@gmail.com', '$2a$04$Fx/SX9.BAvtPlMyIIqqFx.hLY2Xp8nnhpzvEEVINvVpwIPbA3v/.i');
 
-insert into users_roles (user_id, role_id) values (10, 1), (10, 2);
+insert into users_roles (user_id, role_id) values (1, 1), (1, 2);
