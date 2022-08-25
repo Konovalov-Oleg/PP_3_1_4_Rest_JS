@@ -41,12 +41,6 @@ public class UserService {
     }
 
     @Transactional
-    public void updateUser(User user) {
-        encodePassword(user);
-        userRepository.save(user);
-    }
-
-    @Transactional
     public void deleteUser(long id) {
         userRepository.deleteById(id);
     }

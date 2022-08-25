@@ -9,7 +9,7 @@ import ru.kata.spring.boot_security.demo.service.UserService;
 
 @Controller
 public class UserController {
-    private UserService userService;
+    private final UserService userService;
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -36,9 +36,9 @@ public class UserController {
         return "redirect:/admin";
     }
 
-    @PatchMapping("/admin/updateUser/{id}")
+    @PutMapping("/admin/updateUser/{id}")
     public String updateUser(@ModelAttribute("updateUser") User user) {
-        userService.updateUser(user);
+        userService.saveUser(user);
         return "redirect:/admin";
     }
 
