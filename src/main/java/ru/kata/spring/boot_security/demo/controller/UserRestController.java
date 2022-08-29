@@ -27,20 +27,20 @@ public class UserRestController {
     }
 
     @PostMapping("/users")
-    public User addNewUser(@RequestBody User user) {
+    public List<User> addNewUser(@RequestBody User user) {
         userService.saveUser(user);
-        return user;
+        return userService.getAllUsers();
     }
 
     @PutMapping("/users")
-    public User updateUser(@RequestBody User user) {
+    public List<User> updateUser(@RequestBody User user) {
         userService.saveUser(user);
-        return user;
+        return userService.getAllUsers();
     }
 
     @DeleteMapping("/users/{id}")
-    public String deleteUser(@PathVariable int id) {
+    public List<User> deleteUser(@PathVariable int id) {
         userService.deleteUser(id);
-        return "User №" + id + " deleted";
+        return userService.getAllUsers();
     }
 }
