@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
       lang="en">
 <head>
     <meta charset="UTF-8">
@@ -101,7 +100,7 @@
                                     </tr>
                                     </thead>
                                     <tbody id="allUserTable">
-                                        <!--       JS          -->
+                                    <!--       JS          -->
                                     </tbody>
                                 </table>
                             </div>
@@ -195,6 +194,186 @@
                         </table>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Кнопка-триггер модального окна -->
+<div class="d-none">
+    <button type="button" class="btn btn-info" data-toggle="modal"
+            data-target="#editModalUser" id="buttonEditForm">
+        Edit
+    </button>
+</div>
+<!-- Модальное окно Edit -->
+<div class="modal fade" id="editModalUser" tabindex="-1"
+     aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Edit user</h5>
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body m-auto">
+                <form>
+                    <fieldset disabled>
+                        <div class="form-group text-center">
+                            <label for="editId"><strong>ID</strong></label>
+                            <input type="text"
+                                   value=""
+                                   name="id" required
+                                   class="form-control form-control-sm"
+                                   id="editId">
+                        </div>
+                    </fieldset>
+                    <div class="form-group text-center">
+                        <label for="editFirstName"><strong>First
+                            name</strong></label>
+                        <input type="text" value=""
+                               name="firstName" required
+                               class="form-control form-control-sm"
+                               id="editFirstName">
+                    </div>
+                    <div class="form-group text-center">
+                        <label for="editLastName"><strong>Last
+                            name</strong></label>
+                        <input type="text" value=""
+                               name="lastName" required
+                               class="form-control form-control-sm"
+                               id="editLastName">
+                    </div>
+                    <div class="form-group text-center">
+                        <label for="editAge"><strong>Age</strong></label>
+                        <input type="number" value=""
+                               name="age" required
+                               class="form-control form-control-sm"
+                               id="editAge">
+                    </div>
+                    <div class="form-group text-center">
+                        <label for="editEmail"><strong>Email</strong></label>
+                        <input type="email" value=""
+                               name="email" required
+                               class="form-control form-control-sm"
+                               id="editEmail">
+                    </div>
+                    <div class="form-group text-center">
+                        <label for="editPassword"><strong>Password</strong></label>
+                        <input type="password"
+                               value=""
+                               name="password"
+                               class="form-control form-control-sm"
+                               id="editPassword">
+                    </div>
+                    <div class="form-group text-center">
+                        <label for="rolesEditUser"><strong>Role</strong></label>
+                        <select multiple name="roles[]" required
+                                class="form-control form-control-sm"
+                                id="rolesEditUser"
+                                size="2">
+                            <option value="2">Admin</option>
+                            <option value="1">User</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                        data-dismiss="modal">Close
+                </button>
+                <button type="submit" data-dismiss="modal"
+                        class="btn btn-primary" id="editButton"
+                        onclick="putUser()">Edit
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="d-none">
+    <!-- Кнопка-триггер модального окна -->
+    <button type="button" class="btn btn-danger" data-toggle="modal"
+            data-target="deleteForm" id="buttonDeleteForm">
+        Delete
+    </button>
+</div>
+<!-- Модальное окно Delete -->
+<div class="modal fade" id="deleteForm" tabindex="-1"
+     aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete
+                    user</h5>
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body m-auto">
+                <form>
+                    <fieldset disabled>
+                        <div class="form-group text-center">
+                            <label for="deleteID"><strong>ID</strong></label>
+                            <input type="text" value=""
+                                   class="form-control form-control-sm"
+                                   name="id"
+                                   id="deleteID">
+                        </div>
+                        <div class="form-group text-center">
+                            <label for="deleteFirstName"><strong>First
+                                name</strong></label>
+                            <input type="text"
+                                   value=""
+                                   class="form-control form-control-sm"
+                                   name="firstName"
+                                   id="deleteFirstName">
+                        </div>
+                        <div class="form-group text-center">
+                            <label for="deleteLastName"><strong>Last
+                                name</strong></label>
+                            <input type="text"
+                                   value=""
+                                   class="form-control form-control-sm"
+                                   name="lastName"
+                                   id="deleteLastName">
+                        </div>
+                        <div class="form-group text-center">
+                            <label for="deleteAge"><strong>Age</strong></label>
+                            <input type="number" value=""
+                                   class="form-control form-control-sm"
+                                   name="age"
+                                   id="deleteAge">
+                        </div>
+                        <div class="form-group text-center">
+                            <label for="deleteEmail"><strong>Email</strong></label>
+                            <input type="email"
+                                   value=""
+                                   class="form-control form-control-sm"
+                                   name="email"
+                                   id="deleteEmail">
+                        </div>
+                        <div class="form-group text-center">
+                            <label for="deleteRoles"><strong>Role</strong></label>
+                            <select multiple name="roles[]" required
+                                    class="form-control form-control-sm"
+                                    size="2"
+                                    id="deleteRoles">
+                                <option value="2">Admin</option>
+                                <option value="1">User</option>
+                            </select>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                        data-dismiss="modal">Close
+                </button>
+                <button type="submit" data-dismiss="modal"
+                        class="btn btn-danger" id="buttonDeleteUser">Delete
+                </button>
             </div>
         </div>
     </div>

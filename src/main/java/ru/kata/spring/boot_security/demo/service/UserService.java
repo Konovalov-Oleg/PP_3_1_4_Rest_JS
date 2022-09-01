@@ -3,9 +3,7 @@ package ru.kata.spring.boot_security.demo.service;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.kata.spring.boot_security.demo.entity.Role;
 import ru.kata.spring.boot_security.demo.entity.User;
-import ru.kata.spring.boot_security.demo.repositories.RoleRepository;
 import ru.kata.spring.boot_security.demo.repositories.UserRepository;
 
 import javax.transaction.Transactional;
@@ -16,13 +14,10 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    private final RoleRepository roleRepository;
-
     private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -45,10 +40,6 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public List<Role> getAllRoles() {
-        return roleRepository.findAll();
-    }
-
     public User getUserByEmail(String email) {
         return userRepository.findByEmail(email).orElseGet(User::new);
     }
@@ -58,7 +49,6 @@ public class UserService {
                 (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext()
                         .getAuthentication().getPrincipal();
         return getUserByEmail(principal.getUsername());
-
     }
 
     private void encodePassword(User user) {

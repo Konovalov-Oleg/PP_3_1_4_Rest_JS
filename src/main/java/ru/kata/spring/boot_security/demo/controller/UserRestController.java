@@ -21,6 +21,11 @@ public class UserRestController {
         return userService.getAllUsers();
     }
 
+    @GetMapping("/users/{id}")
+    public User getUserById(@PathVariable int id) {
+        return userService.getUserById(id);
+    }
+
     @GetMapping("/user")
     public User getAuthenticatedUser() {
         return userService.getAuthenticatedUser();
